@@ -47,4 +47,6 @@ class BookShelf(Model):
         book = BookShelf()
         book.id = obj.id
         book.name = obj.name
+        book.row = obj.row
+        book.column = obj.column
         return book

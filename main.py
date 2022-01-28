@@ -1,12 +1,14 @@
 from flask import Flask
 import logging as logger
 
+from repository import Session
 
 """
     Main application
 """
 
 flaskAppInstance = Flask(__name__)
+
 
 if __name__ == '__main__':
     logger.debug("Main application starting..........")

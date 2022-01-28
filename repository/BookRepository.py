@@ -8,44 +8,29 @@ class BookRepository:
 
     def isBookExist(self, id):
         session = Session()
-        try:
-            return session.query(func.count(Book.id)).filter(Book.id == id).scalar() == 1
-        finally:
-            session.close()
+        return session.query(func.count(Book.id)).filter(Book.id == id).scalar() == 1
 
     def getBookById(self, id):
         session = Session()
-        try:
-            return session.query(Book).filter(Book.id == id).first()
-        finally:
-            session.close()
+        return session.query(Book).filter(Book.id == id).first()
 
     def getBookByName(self, name):
         session = Session()
-        try:
-            return session.query(Book).filter(Book.name == name).all()
-        finally:
-            session.close()
+        return session.query(Book).filter(Book.name == name).all()
 
     def save(self, books):
         session = Session()
-        try:
-            session.bulk_save_objects(books, return_defaults=True)
-            session.commit()
-            session.flush()
-            return books
-        finally:
-            session.close()
+        session.bulk_save_objects(books, return_defaults=True)
+        session.commit()
+        session.flush()
+        return books
 
     def updateBookById(self, id, update_request):
         session = Session()
-        try:
-            session.query(Book).filter(Book.id == id).update(update_request)
-            session.commit()
-            session.flush()
-            return self.getBookById(id)
-        finally:
-            session.close()
+        session.query(Book).filter(Book.id == id).update(update_request)
+        session.commit()
+        session.flush()
+        return self.getBookById(id)
 
     def deleteBookById(self, id):
         pass
