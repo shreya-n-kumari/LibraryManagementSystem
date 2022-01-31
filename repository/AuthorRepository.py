@@ -12,7 +12,7 @@ class AuthorRepository:
 
     def getAuthorByName(self, name):
         session = Session()
-        return session.query(Author).filter(Author.author_name == name).first()
+        return session.query(Author).filter(Author.author_name == name).all()
 
     def isAuthorExist(self, id):
         session = Session()

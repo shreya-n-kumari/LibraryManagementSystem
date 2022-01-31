@@ -10,7 +10,6 @@ from model import Model
 
 
 class Author(Model):
-
     __tablename__ = "author"
 
     author_id = Column('author_id', Integer, primary_key=True, autoincrement=True)

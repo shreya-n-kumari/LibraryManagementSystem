@@ -18,6 +18,7 @@ def response_success(myResponse, response_code=200):
     return Response(json.dumps(result, sort_keys=True, indent=4),
                     response_code, mimetype='application/json')
 
+
 def response_failure(myResponse, response_code=500):
     # create a dict  response object.
     result = {"code": response_code, "message": "Fail", "payload": myResponse}
@@ -43,9 +44,11 @@ class AuthorSearchByName(Resource):
 
     def get(self, name):
         logger.info("Fetching author with name {}".format(name))
-        author_instance: Author = author_repository.getAuthorByName(name)
-        logger.info("successfully Fetched Author", author_instance)
-        return response_success(author_instance.toJson())
+        author_instance = author_repository.getAuthorByName(name)
+        for instance in author_instance:
+            author_List = [instance.toJson()]
+        logger.info("successfully Fetched Author", author_List)
+        return response_success(author_List)
 
 
 class AuthorInsert(Resource):
@@ -64,13 +67,15 @@ class AuthorInsert(Resource):
             author_list.append(instance.toJson())
         return response_success(author_list, 201)
 
+
 class AuthorUpdateById(Resource):
+
     def put(self, id):
         logger.info("Request to update a Author by id: ", id)
         request_data = request.get_json()
         if author_repository.isAuthorExist(id):
             #update Author
-            author: Author = AuthorRepository.updateAuthorById(id, request_data)
+            author: Author = author_repository.updateAuthorById(id, request_data)
         else:
            return response_failure("Author id {} not found".format(id))
         return response_success(author.toJson())

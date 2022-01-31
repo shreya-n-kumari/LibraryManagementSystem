@@ -10,10 +10,10 @@ class BookShelf(Model):
     __tablename__ = "book_self"
 
     # database column
-    id = Column('id', Integer, primary_key=True, autoincrement=True)
-    name = Column('name', String, nullable=False)
-    row = Column('row', Integer, nullable=False)
-    column = Column('column', Integer, nullable=False)
+    id = Column('self_id', Integer, primary_key=True, autoincrement=True)
+    name = Column('self_name', String, nullable=False)
+    row = Column('self_rows', Integer, nullable=False)
+    column = Column('self_columns', Integer, nullable=False)
 
     def getId(self):
         return self.self_id
@@ -34,14 +34,14 @@ class BookShelf(Model):
         self.name = name
 
     def set_row(self, row):
-        self.rows = row
+        self.row = row
 
     def set_column(self, column):
-        self.columns = column
+        self.column = column
 
     def toJson(self):
-        return json.dumps({"self_id": self.id, "self_name": self.name, "self_rows": self.row, "self_columns": self.column},
-                          sort_keys=True, indent=4)
+        return json.dumps({"self_id": self.id, "self_name": self.name, "self_rows": self.row,
+                           "self_columns": self.column}, sort_keys=True, indent=4)
 
     def toModel(obj):
         book = BookShelf()
