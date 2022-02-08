@@ -16,16 +16,16 @@ class BookShelf(Model):
     column = Column('self_columns', Integer, nullable=False)
 
     def getId(self):
-        return self.self_id
+        return self.id
 
     def getName(self):
-        return self.self_name
+        return self.name
 
     def getRows(self):
-        return self.self_rows
+        return self.row
 
     def getColumns(self):
-        return self.self_columns
+        return self.column
 
     def set_id(self, _id):
         self.id = _id

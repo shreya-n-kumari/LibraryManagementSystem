@@ -24,7 +24,7 @@ def response_failure(myResponse, response_code=500):
                     response_code, mimetype='application/json')
 
 
-class ShelfSearchById(Resource):
+class ShelfSearchById(Resource):    #ERROR
 
     def get(self, id):
         logger.info("Fetching bookshelf with id {}".format(id))

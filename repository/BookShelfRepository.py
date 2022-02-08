@@ -16,7 +16,7 @@ class ShelfRepository:
 
     def getShelfByName(self, name):
         session = Session()
-        return  session.query(BookShelf).filter(BookShelf.name == name).all()
+        return session.query(BookShelf).filter(BookShelf.name == name).all()
 
     def saveShelf(self, shelf):
         session = Session()
