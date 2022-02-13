@@ -81,7 +81,16 @@ class AuthorUpdateById(Resource):
         return response_success(author.toJson())
 
 
+class AuthorDeleteById(Resource):
 
+    def delete(self, id: int):
+        logger.info("Request to delete a book by id: ", id)
+        if author_repository.isAuthorExist(id):
+            author_instance: Author = author_repository.deleteAuthorById(id)
+        else:
+            response_failure("author id does not exist", 500)
 
+        logger.info("Successfully fetched book ", author_instance)
+        response_success("book id: {} deleted".format(id), 200)
 
 

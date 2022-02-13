@@ -23,7 +23,7 @@ class DrawerRepository:
 
     def updateDrawerById(self, id, update_request):
         session = Session()
-        session.query(Drawer).filter(Drawer.id == id).update(update_request)
+        session.query(Drawer).filter(Drawer.drawer_id == id).update(update_request)
         session.commit()
         session.flush()
         return self.getDrawerById(id)

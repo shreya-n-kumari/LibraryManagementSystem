@@ -1,7 +1,7 @@
 from flask_restful import Api
 from main import flaskAppInstance
 from .BookController import BookSearchById, BookSearchByName, BookInsert, BookUpdateById, BookDeleteById
-from .AuthorController import AuthorSearchById, AuthorSearchByName, AuthorInsert, AuthorUpdateById
+from .AuthorController import AuthorSearchById, AuthorSearchByName, AuthorInsert, AuthorUpdateById, AuthorDeleteById
 from .BookShelfController import ShelfSearchById, ShelfSearchByName, ShelfInsert, ShelfUpdateById
 from .DrawerController import DrawerSearchById, DrawerInsert, DrawerUpdateById
 
@@ -21,6 +21,7 @@ restServer.add_resource(AuthorSearchById, "/api/authors/<int:id>")  # get by id 
 restServer.add_resource(AuthorSearchByName, "/api/authors/<name>")  # get by name request
 restServer.add_resource(AuthorInsert, "/api/authors")  # save request
 restServer.add_resource(AuthorUpdateById, "/api/authors/<int:id>")  # update request
+restServer.add_resource(AuthorDeleteById, "/api/authors/<int:id>")  # delete request
 
 # BookShelf resources
 restServer.add_resource(ShelfSearchById, "/api/shelf/<int:id>")  # get by id request

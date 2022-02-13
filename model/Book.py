@@ -23,8 +23,8 @@ class Book(Model):
     publication_year = Column('publication_year', DateTime, nullable=False)
     publication_name = Column('publication_name', String(255), nullable=False)
     author_id = Column('author_id', Integer, ForeignKey("author.author_id", onupdate='CASCADE', ondelete='SET NULL'),
-                       nullable=False)
-    author = relationship('Author', backref="books")
+                       nullable=True)
+    author = relationship('Author', cascade="all,delete", backref="books")
 
     '''
         getter-setter

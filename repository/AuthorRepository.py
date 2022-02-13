@@ -32,3 +32,11 @@ class AuthorRepository:
         session.flush()
         return self.getAuthorById(id)
 
+    def deleteAuthorById(self, id):
+        session = Session()
+        x = session.query(Author).get(id)
+        session.delete(x)
+        session.commit()
+        session.flush()
+        return self.getAuthorById(id)
+

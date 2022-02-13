@@ -142,4 +142,9 @@ class BookUpdateById(Resource):
 class BookDeleteById(Resource):
 
     def delete(self, id: int):
-        pass
+        logger.info("Request to delete a book by id: ", id)
+        if book_repository.isBookExist(id):
+            book_instance: Book = book_repository.deleteBookById(id)
+        logger.info("Successfully fetched book ", book_instance)
+        response_success("book id: {} deleted".format(id), 200)
+

@@ -33,4 +33,9 @@ class BookRepository:
         return self.getBookById(id)
 
     def deleteBookById(self, id):
-        pass
+        session = Session()
+        x = session.query(Book).get(id)
+        session.delete(x)
+        session.commit()
+        session.flush()
+        return self.getBookById(id)
