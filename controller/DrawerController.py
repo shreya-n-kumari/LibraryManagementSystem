@@ -88,3 +88,16 @@ class DrawerUpdateById(Resource):
         else:
             response_failure("Drawer id: {} not found.".format(id), 404)
         response_success(drawer.toJson())
+
+
+class DrawerDeleteById(Resource):
+
+    def delete(self, id):       # ERROR:  does not delete 1st id.
+        logger.info("Request to delete drawer by id", id)
+        if drawer_repository.isDrawerExist(id):
+            drawer: Drawer = drawer_repository.deleteDrawerById(id)
+            logger.info("successfully deleted drawer ",drawer)
+        else:
+            return response_failure("drawer id {} does not exist".format(id))
+        response_success("drawer id {} deleted".format(id))
+

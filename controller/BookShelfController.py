@@ -72,3 +72,14 @@ class ShelfUpdateById(Resource):
             return response_failure("bookshelf id {} not found.".format(id))
         return response_success(shelf.toJson())
 
+
+class DeleteShelfById(Resource):
+    def delete(self, id):
+        logger.info("Request to delete a shelf by id {}", id)
+        if shelf_repository.isShelfExist(id):
+            shelf: BookShelf = shelf_repository.deleteShelfById(id)
+            logger.info("successfully deleted shelf ", shelf)
+        else:
+            return response_failure("Shelf id: {} not found".format(id))
+        response_success("shelf id : {} is deleted".format(id), 200)
+

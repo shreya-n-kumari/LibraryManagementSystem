@@ -2,8 +2,8 @@ from flask_restful import Api
 from main import flaskAppInstance
 from .BookController import BookSearchById, BookSearchByName, BookInsert, BookUpdateById, BookDeleteById
 from .AuthorController import AuthorSearchById, AuthorSearchByName, AuthorInsert, AuthorUpdateById, AuthorDeleteById
-from .BookShelfController import ShelfSearchById, ShelfSearchByName, ShelfInsert, ShelfUpdateById
-from .DrawerController import DrawerSearchById, DrawerInsert, DrawerUpdateById
+from .BookShelfController import ShelfSearchById, ShelfSearchByName, ShelfInsert, ShelfUpdateById, DeleteShelfById
+from .DrawerController import DrawerSearchById, DrawerInsert, DrawerUpdateById, DrawerDeleteById
 
 """
     controller module
@@ -28,8 +28,10 @@ restServer.add_resource(ShelfSearchById, "/api/shelf/<int:id>")  # get by id req
 restServer.add_resource(ShelfSearchByName, "/api/shelf/<name>")  # get by name request
 restServer.add_resource(ShelfInsert, "/api/shelf")  # save request
 restServer.add_resource(ShelfUpdateById, "/api/shelf/<int:id>")  # update request
+restServer.add_resource(DeleteShelfById, "/api/shelf/<int:id>")
 
 # Drawer resources
 restServer.add_resource(DrawerSearchById, "/api/drawers/<int:id>")  # get by id request
 restServer.add_resource(DrawerInsert, "/api/drawers")  # save request
 restServer.add_resource(DrawerUpdateById, "/api/drawers/<int:id>")  # update request
+restServer.add_resource(DrawerDeleteById, "/api/drawers/<int:id>")

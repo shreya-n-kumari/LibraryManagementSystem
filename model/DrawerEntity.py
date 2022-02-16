@@ -15,7 +15,7 @@ class Drawer(Model):
     capacity = Column('drawer_capacity', Integer, nullable=False)
     shelf_id = Column('self_id', Integer, ForeignKey("book_self.self_id", onupdate='CASCADE', ondelete='SET NULL'),
                       nullable=False)
-    bookshelf = relationship('BookShelf', backref = "book_self")
+    bookshelf = relationship('BookShelf', cascade="all,delete", backref="book_self")
 
     'getter setter code'
 

@@ -145,6 +145,8 @@ class BookDeleteById(Resource):
         logger.info("Request to delete a book by id: ", id)
         if book_repository.isBookExist(id):
             book_instance: Book = book_repository.deleteBookById(id)
-        logger.info("Successfully fetched book ", book_instance)
-        response_success("book id: {} deleted".format(id), 200)
+            logger.info("Successfully fetched book ", book_instance)
+        else:
+            return response_failure("book id: {} does not exist.".format(id), 500)
+        return response_success("book id: {} deleted".format(id), 200)
 

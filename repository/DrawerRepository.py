@@ -27,3 +27,12 @@ class DrawerRepository:
         session.commit()
         session.flush()
         return self.getDrawerById(id)
+
+    def deleteDrawerById(self, id):
+        session = Session()
+        x = session.query(Drawer).get(id)
+        session.delete(x)
+        session.commit()
+        session.flush()
+        return self.getDrawerById(id)
+

@@ -87,10 +87,9 @@ class AuthorDeleteById(Resource):
         logger.info("Request to delete a book by id: ", id)
         if author_repository.isAuthorExist(id):
             author_instance: Author = author_repository.deleteAuthorById(id)
+            logger.info("Successfully fetched book ", author_instance)
         else:
-            response_failure("author id does not exist", 500)
-
-        logger.info("Successfully fetched book ", author_instance)
-        response_success("book id: {} deleted".format(id), 200)
+            return response_failure("author id: {} does not exist".format(id), 500)
+        return response_success("book id: {} deleted".format(id), 200)
 
 

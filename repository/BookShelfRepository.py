@@ -32,3 +32,10 @@ class ShelfRepository:
         session.flush()
         return self.getShelfById(id)
 
+    def deleteShelfById(self, id):
+        session = Session()
+        x = session.query(BookShelf).get(id)
+        session.delete(x)
+        session.commit()
+        session.flush()
+        return self.getShelfById(id)
